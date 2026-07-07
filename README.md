@@ -1,4 +1,17 @@
-# Panulat
+<p align="center">
+  <img src="docs/assets/panulat-logo.png" alt="Panulat" width="520" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/packagist/v/blcklab/panulat?style=flat-square" alt="Packagist version" />
+  <img src="https://img.shields.io/packagist/dm/blcklab/panulat?style=flat-square" alt="downloads" />
+  <a href="https://github.com/blcklab/panulat/actions/workflows/ci.yml">
+    <img src="https://github.com/blcklab/panulat/actions/workflows/ci.yml/badge.svg" alt="CI" />
+  </a>
+  <img src="https://img.shields.io/github/license/blcklab/panulat?style=flat-square&v=2" alt="license" />
+</p>
+
+
 
 Panulat is a modular, lightweight PHP framework for building clean REST APIs and API-first applications. It was created to keep API development as simple and focused as possible.
 
