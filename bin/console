@@ -1,0 +1,45 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Panulat\Console\ConfigCacheCommand;
+use Panulat\Console\DbSeedCommand;
+use Panulat\Console\ConsoleApplication;
+use Panulat\Console\ContainerCacheCommand;
+use Panulat\Console\MigrateCommand;
+use Panulat\Console\OptimizeClearCommand;
+use Panulat\Console\OptimizeCommand;
+use Panulat\Console\PerformanceCheckCommand;
+use Panulat\Console\RouteCacheCommand;
+use Panulat\Config\ConfigLoader;
+use Panulat\Config\Env;
+use Panulat\Support\Translator;
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+$basePath = dirname(__DIR__);
+(new Env())->load($basePath . '/.env');
+$translator = Translator::fromConfig($basePath, (new ConfigLoader($basePath))->load(false));
+$console = new ConsoleApplication($translator);
+$console->add(new ConfigCacheCommand($basePath));
+$console->add(new RouteCacheCommand($basePath));
+$console->add(new ContainerCacheCommand($basePath));
+$console->add(new OptimizeCommand($basePath));
+$console->add(new OptimizeClearCommand($basePath));
+$console->add(new PerformanceCheckCommand($basePath));
+$console->add(new MigrateCommand($basePath));
+$console->add(new DbSeedCommand($basePath));
+
+if (class_exists(Panulat\Cli\ScaffoldingCommands::class)) {
+    Panulat\Cli\ScaffoldingCommands::register($console, $basePath);
+}
+
+$console->alias('tala', 'list');
+$console->alias('lipat', 'migrate');
+$console->alias('punla', 'db:seed');
+$console->alias('hasa', 'optimize');
+$console->alias('linis', 'optimize:clear');
+$console->alias('suri:bilis', 'performance:check');
+
+exit($console->run($argv));

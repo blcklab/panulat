@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/vendor/autoload.php';
+
+if (! class_exists(Panulat\Cli\BlackApplication::class)) {
+    fwrite(STDERR, 'Panulat CLI is not installed. Run: composer require --dev blcklab/panulat-cli' . PHP_EOL);
+    exit(1);
+}
+
+exit(Panulat\Cli\BlackApplication::run($argv, __DIR__));

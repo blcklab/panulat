@@ -1,0 +1,10 @@
+vendor
+.git
+.env
+storage/logs/*
+storage/cache/*
+bootstrap/cache/*.php
+database/*.sqlite
+database/*.sqlite-journal
+.phpunit.cache
+.php-cs-fixer.cache

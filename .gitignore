@@ -1,0 +1,17 @@
+/vendor/
+/.env
+/.env.local
+/.env.*.local
+/.phpunit.cache/
+/.php-cs-fixer.cache
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitkeep
+/storage/cache/*
+!/storage/cache/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+/database/*.sqlite
+/database/*.sqlite-journal
+.DS_Store
+Thumbs.db
+composer.final.json

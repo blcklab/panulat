@@ -1,0 +1,82 @@
+{
+    "name": "blcklab/panulat",
+    "description": "A starter API application for Panulat, a modular lightweight PHP framework for clean REST APIs.",
+    "type": "project",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "api",
+        "json",
+        "framework",
+        "rest",
+        "starter",
+        "panulat"
+    ],
+    "require": {
+        "php": "^8.3",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "blcklab/panulat-core": "^0.1",
+        "blcklab/panulat-jwt": "^0.1"
+    },
+    "require-dev": {
+        "blcklab/panulat-cli": "^0.1",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Panulat\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php -r \"is_dir('database') || mkdir('database', 0775, true); file_exists('database/database.sqlite') || touch('database/database.sqlite');\""
+        ],
+        "setup": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php -r \"is_dir('database') || mkdir('database', 0775, true); file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php bin/console migrate",
+            "@php bin/console db:seed"
+        ],
+        "serve": "php -S 127.0.0.1:8000 -t public",
+        "black": "php black",
+        "test": "phpunit",
+        "stan": "phpstan analyse",
+        "cs-fix": "php-cs-fixer fix",
+        "check": [
+            "@stan",
+            "@test"
+        ],
+        "setup:sqlite": "sh scripts/setup-sqlite.sh",
+        "test:api": "sh scripts/test-api.sh",
+        "docker:up": "docker compose up --build",
+        "docker:up:d": "docker compose up -d --build",
+        "docker:down": "docker compose down",
+        "docker:logs": "docker compose logs -f app",
+        "docker:shell": "docker compose exec app sh",
+        "docker:migrate": "docker compose exec app php bin/console migrate",
+        "docker:seed": "docker compose exec app php bin/console db:seed",
+        "docker:test": "docker compose exec app composer test",
+        "docker:check": "docker compose exec app composer check",
+        "docker:test-api": "BASE_URL=http://127.0.0.1:8080 sh scripts/test-api.sh"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "phpstan/extension-installer": false
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
