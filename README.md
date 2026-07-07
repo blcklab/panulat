@@ -25,11 +25,6 @@ This repository is the Panulat starter project. It gives you a ready-to-use API 
 ## Quick Start
 
 
-Documentation
--------------
-
-Start here: [`docs/getting-started.md`](docs/getting-started.md)
-
 Create a new project:
 
 ```bash
