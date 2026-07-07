@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/panulat-logo.png" alt="Panulat" width="520" />
+  <img src="docs/assets/panulat-logo.png" alt="Panulat" width="256" />
 </p>
 
 <p align="center">
